@@ -11,15 +11,19 @@ poly({
 })
 */
 
-import { Match, every } from "./common";
+import { Pred, every } from "./common";
 
-export const poly = (matchers: { [k: string]: Match }, { rest = false } = {}) => (
-	...args: any[]
-) => {
+type Matchers<T> = {
+	[k: string]: [Pred[], T];
+};
+
+export const poly = <T extends (...x: any) => any>(matchers: Matchers<T>) => (...args: any[]) => {
 	for (const matcher in matchers) {
 		const [preds, target] = matchers[matcher];
-		if (every(preds, args, rest)) {
-			return target(...args);
+		if (every(preds, args)) {
+			return target.call(matchers, ...args);
 		}
 	}
+
+	throw new Error("The parameters passed did not match any of the overloads.");
 };

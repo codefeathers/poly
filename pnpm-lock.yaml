@@ -1,3 +1,5 @@
+dependencies:
+  tcomb-validation: 3.4.1
 devDependencies:
   chai: 4.2.0
   mocha: 7.1.0
@@ -711,6 +713,16 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-on9Kwidc1IUQo+bQdhi8+Tijpo0e1SS6RoGo2guUwn5vdaxw8RXOF9Vb2ws+ihWOmh4JnCJOvaziZWP1VABaLg==
+  /tcomb-validation/3.4.1:
+    dependencies:
+      tcomb: 3.2.29
+    dev: false
+    resolution:
+      integrity: sha512-urVVMQOma4RXwiVCa2nM2eqrAomHROHvWPuj6UkDGz/eb5kcy0x6P0dVt6kzpUZtYMNoAqJLWmz1BPtxrtjtrA==
+  /tcomb/3.2.29:
+    dev: false
+    resolution:
+      integrity: sha512-di2Hd1DB2Zfw6StGv861JoAF5h/uQVu/QJp2g8KVbtfKnoHdBQl5M32YWq6mnSYBQ1vFFrns5B1haWJL7rKaOQ==
   /to-regex-range/5.0.1:
     dependencies:
       is-number: 7.0.0
@@ -803,4 +815,5 @@ specifiers:
   chai: ^4.2.0
   mocha: ^7.1.0
   rimraf: ^3.0.2
+  tcomb-validation: ^3.4.1
   typescript: ^3.8.3

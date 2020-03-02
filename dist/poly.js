@@ -13,12 +13,13 @@ poly({
 */
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("./common");
-exports.poly = (matchers, { rest = false } = {}) => (...args) => {
+exports.poly = (matchers) => (...args) => {
     for (const matcher in matchers) {
         const [preds, target] = matchers[matcher];
-        if (common_1.every(preds, args, rest)) {
+        if (common_1.every(preds, args)) {
             return target(...args);
         }
     }
+    throw new Error("The parameters passed did not match any of the overloads.");
 };
 //# sourceMappingURL=poly.js.map
