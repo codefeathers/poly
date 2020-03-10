@@ -1,1 +1,1 @@
-{"version":3,"file":"monopoly.d.ts","sourceRoot":"./src/","sources":["monopoly.ts"],"names":[],"mappings":"AAOA,OAAO,EAAE,IAAI,EAAS,MAAM,UAAU,CAAC;AAEvC,eAAO,MAAM,QAAQ,8DA2BpB,CAAC"}
+{"version":3,"file":"monopoly.d.ts","sourceRoot":"./src/","sources":["monopoly.ts"],"names":[],"mappings":"AAOA,OAAO,EAAE,SAAS,EAAS,MAAM,UAAU,CAAC;AAE5C,eAAO,MAAM,QAAQ,mEA2BpB,CAAC"}

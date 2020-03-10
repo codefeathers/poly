@@ -11,10 +11,10 @@ poly({
 })
 */
 
-import { Pred, every } from "./common";
+import { Predicate, every } from "./common";
 
 type Matchers<T> = {
-	[k: string]: [Pred[], T];
+	[k: string]: [Predicate[], T];
 };
 
 export const poly = <T extends (...x: any) => any>(matchers: Matchers<T>) => (...args: any[]) => {

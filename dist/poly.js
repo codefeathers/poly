@@ -17,7 +17,7 @@ exports.poly = (matchers) => (...args) => {
     for (const matcher in matchers) {
         const [preds, target] = matchers[matcher];
         if (common_1.every(preds, args)) {
-            return target(...args);
+            return target.call(matchers, ...args);
         }
     }
     throw new Error("The parameters passed did not match any of the overloads.");

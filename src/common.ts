@@ -1,10 +1,10 @@
 const matcherCache = new WeakMap();
 
-export type Pred = (...x: any) => boolean;
+export type Predicate = (x: any) => boolean;
 
-export const check = (pred: Function, arg: any, spread = false) => {
-	if (spread) {
-		if (pred(...arg)) return true;
+export const check = (pred: Predicate, arg: any, rest = false) => {
+	if (rest) {
+		if (pred(arg)) return true;
 	} else if (pred(arg)) {
 		matcherCache.set(pred, arg);
 		return true;
@@ -25,7 +25,7 @@ export const slice = (xs: any[], idx: number) => {
 	}
 };
 
-export const every = (preds: ((...args: any) => boolean)[], args: any[]) => {
+export const every = (preds: Predicate[], args: any[]) => {
 	// true by default, falsified if a check fails
 	let passing = true;
 
@@ -35,7 +35,7 @@ export const every = (preds: ((...args: any) => boolean)[], args: any[]) => {
 
 		if (!matcherCache.get(pred)) {
 			const checked = last
-				? check(pred, slice(args, idx), true) // spread the args if this is the last check
+				? check(pred, slice(args, idx), true) // don't attempt to cache rest params
 				: check(pred, args[idx]); // normally pass the next arg
 			if (!checked) {
 				if (last) return passing;

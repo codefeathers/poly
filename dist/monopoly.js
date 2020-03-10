@@ -14,19 +14,22 @@ exports.monopoly = (preds, target) => (...args) => {
         const pred = preds[predIdx];
         // no more predicates to go
         const last = predIdx === preds.length - 1;
+        // stop iterating and accept the remaining as rest arguments
+        // since we have no more predicates
         const arg = last ? args.slice(argIdx) : args[argIdx];
+        if (last)
+            argIdx = args.length;
         if (common_1.check(pred, arg)) {
-            finalArgs.push(arg);
+            if (last)
+                finalArgs.push(...arg);
+            else
+                finalArgs.push(arg);
             // only proceed to next predicate if an argument satisfies current
-            predIdx++;
+            ++predIdx;
         }
         else {
-            if (last) {
-                // if the last predicate doesn't accept the remaining args, panic
-                throw new Error(`Received too many arguments that do not pass given predicates: ${arg.join(", ")}`);
-            }
-            else
-                finalArgs.push(undefined);
+            finalArgs.push(undefined);
+            ++predIdx;
         }
     }
     return target(...finalArgs);

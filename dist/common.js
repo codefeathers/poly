@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const matcherCache = new WeakMap();
-exports.check = (pred, arg, spread = false) => {
-    if (spread) {
-        if (pred(...arg))
+exports.check = (pred, arg, rest = false) => {
+    if (rest) {
+        if (pred(arg))
             return true;
     }
     else if (pred(arg)) {
@@ -33,7 +33,7 @@ exports.every = (preds, args) => {
         const last = idx === preds.length - 1;
         if (!matcherCache.get(pred)) {
             const checked = last
-                ? exports.check(pred, exports.slice(args, idx), true) // spread the args if this is the last check
+                ? exports.check(pred, exports.slice(args, idx), true) // don't attempt to cache rest params
                 : exports.check(pred, args[idx]); // normally pass the next arg
             if (!checked) {
                 if (last)
