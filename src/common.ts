@@ -1,6 +1,6 @@
 const matcherCache = new WeakMap();
 
-export type Pred = (...x: any) => boolean;
+export type Predicate = (...x: any) => boolean;
 
 export const check = (pred: Function, arg: any, spread = false) => {
 	if (spread) {
