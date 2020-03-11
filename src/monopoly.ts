@@ -5,9 +5,9 @@ monopoly(
 )
 */
 
-import { Pred, check } from "./common";
+import { Predicate, check } from "./common";
 
-export const monopoly = (preds: Pred[], target: Function) => (...args: any[]) => {
+export const monopoly = (preds: Predicate[], target: Function) => (...args: any[]) => {
 	const finalArgs = [];
 
 	let predIdx = 0;

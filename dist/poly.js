@@ -1,25 +1,28 @@
 "use strict";
 /*
-poly({
-    a: [
-        [t.String, t.String],
-        (a, b) => // a and b are String
+poly(
+    [
+        [r.string, r.string],
+        (a, b) => // a and b are string
     ],
-    b: [
-        [t.String, t.Object],
-        (a, b) => // a is String, b is Object
+    [
+        [r.string, r.Array(r.number)],
+        (a, b) => // a is string, b is number[]
     ]
-})
+)
 */
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("./common");
-exports.poly = (matchers) => (...args) => {
-    for (const matcher in matchers) {
-        const [preds, target] = matchers[matcher];
+exports.poly = (...overloads) => 
+// Not to worry, this is not actually `any`.
+// The type is inferred correctly at call-site
+((...args) => {
+    for (const matcher in overloads) {
+        const [preds, target] = overloads[matcher];
         if (common_1.every(preds, args)) {
-            return target(...args);
+            return target.call({ strategy: matcher }, ...args);
         }
     }
     throw new Error("The parameters passed did not match any of the overloads.");
-};
+});
 //# sourceMappingURL=poly.js.map
