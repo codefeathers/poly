@@ -31,8 +31,6 @@ type UnionToIntersection<U> = (U extends any
 	? I
 	: never;
 
-// type Predicate<T extends any> = (x: any) => x is T;
-
 type Target<T extends Predicate[], Return> = (...args: MapGuards<T>) => Return;
 
 export const poly = <
@@ -47,8 +45,8 @@ export const poly = <
 	// Not to worry, this is not actually `any`.
 	// The type is inferred correctly at call-site
 	((...args: any) => {
-		for (const matcher in overloads) {
-			const [preds, target] = overloads[matcher];
+		for (const overload of overloads) {
+			const [preds, target] = overload;
 			if (every(preds, args)) {
 				return target(...args);
 			}
@@ -57,8 +55,11 @@ export const poly = <
 		throw new Error("The parameters passed did not match any of the overloads.");
 	}) as any;
 
-poly([[r.string], x => x], [[r.number], x => x]);
-
-poly([[r.string], x => x]);
-
-type F = [(args: string) => ((x: any) => x is string)[], (args: never) => (x: string) => string];
+const f = poly(
+	//
+	[[r.string], (x: string) => "hello" + x],
+	//
+	[[r.number, r.number], (x: number) => x + 1],
+	//
+	[[r.number, r.number], (x: number, y: number) => x + y],
+);

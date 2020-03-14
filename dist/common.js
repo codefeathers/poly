@@ -31,6 +31,7 @@ exports.every = (preds, args) => {
     for (let idx = 0; idx < preds.length; idx++) {
         const pred = preds[idx];
         const last = idx === preds.length - 1;
+        const rest = last ? args.slice(idx) : null;
         if (!matcherCache.get(pred)) {
             const checked = last
                 ? exports.check(pred, exports.slice(args, idx), true) // spread the args if this is the last check

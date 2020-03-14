@@ -25,13 +25,14 @@ export const slice = (xs: any[], idx: number) => {
 	}
 };
 
-export const every = (preds: ((...args: any) => boolean)[], args: any[]) => {
+export const every = (preds: Predicate[], args: any[]) => {
 	// true by default, falsified if a check fails
 	let passing = true;
 
 	for (let idx = 0; idx < preds.length; idx++) {
 		const pred = preds[idx];
 		const last = idx === preds.length - 1;
+		const rest = last ? args.slice(idx) : null;
 
 		if (!matcherCache.get(pred)) {
 			const checked = last
