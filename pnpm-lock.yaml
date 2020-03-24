@@ -1,16 +1,16 @@
 devDependencies:
-  '@codefeathers/runtype': 0.1.0
+  '@codefeathers/runtype': 0.6.0
   chai: 4.2.0
   mocha: 7.1.0
   rimraf: 3.0.2
   typescript: 3.8.3
 lockfileVersion: 5.1
 packages:
-  /@codefeathers/runtype/0.1.0:
+  /@codefeathers/runtype/0.6.0:
     dev: true
     requiresBuild: true
     resolution:
-      integrity: sha512-BUjtQPRNMeallUSaQilSLNExGEpcOJV5Z8Vc66vkUcC9mh6GFQLAzN4iur/uaMDyFPd442h0valOxlrrBBId8w==
+      integrity: sha512-rT7/3lWI2534OYPJ8rQw35vRlxpJ1Vndeeis3A5EEwDKyvKDeWYANe+H4JjzCKF2wWzsdjUPJNsOgRJ+mEA9pQ==
   /ansi-colors/3.2.3:
     dev: true
     engines:
@@ -806,7 +806,7 @@ packages:
     resolution:
       integrity: sha512-2eehun/8ALW8TLoIl7MVaRUrg+yCnenu8B4kBlRxj3GJGDKU1Og7sMXPNm1BYyM1DOJmTZ4YeN/Nwxv+8XJsUA==
 specifiers:
-  '@codefeathers/runtype': ^0.1.0
+  '@codefeathers/runtype': ^0.6.0
   chai: ^4.2.0
   mocha: ^7.1.0
   rimraf: ^3.0.2
